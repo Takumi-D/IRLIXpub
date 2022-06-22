@@ -1,0 +1,62 @@
+/*Обнуление стилей*/
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body {
+    font-family: "Late";
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+/*Обнуление стилей*/
+
+/*Цвета*/
+:root{
+    --white-color: #FFFFFF;
+    --light-gray-color: #C4C1CF;
+    --dark-gray-color: #44414E;
+    --black-lilac-color: #201F2E;
+    --black-color:  #0E0D13;
+}
+/*Цвета*/
+
+/*Задний фон*/
+body{
+    background-color: var(--black-lilac-color);
+}
+/*Задний фон*/
