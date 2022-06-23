@@ -1,0 +1,9 @@
+.fixed-menu{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--black-lilac-color);
+    z-index: 1;
+    padding-bottom: 8px;
+}

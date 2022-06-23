@@ -1,5 +1,22 @@
-.container{
-    margin: 0 auto;
+.main{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 222px auto 0 auto;
     padding: 0 32px;
-    height: calc(100vh - 127px);
+    overflow: hidden;
+}
+
+.main__wrapper-card{
+    margin-bottom: 36px;
+}
+
+.main__wrapper-card:last-child{
+    margin-bottom: 0;
+}
+
+@media (min-width: 320px) and (max-width: 384px )  {
+    .main{
+        padding: 0;
+    }
 }

@@ -55,6 +55,13 @@ a {
 }
 /*Цвета*/
 
+.container{
+    margin: 0 auto;
+    padding: 0 32px;
+    overflow: hidden;
+}
+
+
 /*Задний фон*/
 body{
     background-color: var(--black-lilac-color);
