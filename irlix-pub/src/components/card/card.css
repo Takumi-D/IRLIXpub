@@ -1,0 +1,43 @@
+.card{
+    position: relative;
+    width: 320px;
+    height: 420px;
+}
+
+.card__wrapper-discount{
+    position: absolute;
+    top: 18px;
+    left: 18px;
+}
+
+.card__image{
+    border-radius: 32px;
+    width: 100%;
+    height: 100%;
+}
+
+.card__description-block{
+    position: absolute;
+    bottom: 24px ;
+    left: 32px;
+}
+
+.card__title{
+    font-family: 'Roboto', 'sans-serif';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0.07em;
+    color: var(  --white-color);
+}
+
+.card__paragraph{
+    font-family: 'Roboto', 'sans-serif';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    color: var(--light-gray-color);
+}
+
