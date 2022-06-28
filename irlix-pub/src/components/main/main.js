@@ -14,6 +14,12 @@ function Main(){
             <div className="main__wrapper-card">
                 <Card/>
             </div>
+            <div className="main__wrapper-card">
+                <Card/>
+            </div>
+            <div className="main__wrapper-card">
+                <Card/>
+            </div>
         </div>
     )
 }
