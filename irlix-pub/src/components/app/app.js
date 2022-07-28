@@ -35,6 +35,7 @@ function App() {
                     </div>
                     <Routes>
                         <Route path="/" element={<Main/>}>
+                            <Route path="/IRLIXpub" element={ <PageSweets/> }/>
                             <Route path="/novelties" element={ <PageNovelite/> }/>
                             <Route path="/sweet" element={ <PageSweets/> }/>
                             <Route path="/hit" element={ <PageHits/> }/>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./main.css";
-import { PageSweets, PageStrong, PageNovelite, PageHits } from "../pages"
-import {BrowserRouter, Router, Route, Outlet, useLocation} from "react-router-dom";
+import { PageSweets } from "../pages"
+import {Outlet, useLocation} from "react-router-dom";
 
 function Main(){
 
