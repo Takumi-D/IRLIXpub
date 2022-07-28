@@ -1,11 +1,12 @@
 import React from "react";
 import "./footer.css";
 
-function Footer() {
+function Footer({textSearch}) {
     return (
         <footer className="footer">
              <div className="footer__wrapper-btn">
-                 <button className="btn">Поиск</button>
+                 <input  onChange={(el) => textSearch(el.target.value)} className="btn" type="text"/>
+                 {/*<button className="btn">Поиск</button>*/}
              </div>
         </footer>
     )

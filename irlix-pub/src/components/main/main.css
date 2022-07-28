@@ -1,64 +1,24 @@
 .main{
     display: flex;
     flex-wrap: wrap;
-    margin: 222px auto 0 auto;
+    margin: 222px auto 200px auto;
     padding: 0 32px;
     overflow: hidden;
     justify-content: center;
 }
 
-.main__wrapper-card{
-    margin-bottom: 36px;
-    width: 336px;
-    margin-right: 32px;
-}
-
-.main__wrapper-card:last-child{
-    margin-bottom: 0;
-    margin-right: 0px;
-}
-
-@media (min-width: 320px) and (max-width: 384px )  {
-    .main{
-        padding: 0;
-    }
+.main__cardList{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 32px;
 }
 
 @media (min-width: 320px) and (max-width: 767px )  {
-    .main{
-        max-width: 767px;
+    .main__cardList{
+        justify-content: center;
     }
-
-    .main__wrapper-card{
-        margin-bottom: 36px;
-        width: 320px;
-    }
-}
-
-@media (min-width: 736px) and (max-width: 1024px )  {
-    .main__wrapper-card:nth-child(2n + 2){
-        margin-right: 0px;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1024px )  {
-    .main__wrapper-card:nth-child(2n + 2){
-        margin-right: 0px;
-    }
-}
-
-@media (min-width: 1025px) and (max-width: 1200px )  {
 
 }
 
-@media (min-width: 1136px) and (max-width: 1200px )  {
-    .main__wrapper-card:nth-child(3n + 3){
-        margin-right: 0px;
-    }
-}
 
-@media (min-width: 1201px) and (max-width: 1200px )  {
-    .main__wrapper-card:nth-child(4n + 4){
-        margin-right: 0px;
-    }
-}

@@ -1,24 +1,26 @@
 import React from "react";
 import "./main.css";
-import Card from "../card/card";
+import { PageSweets, PageStrong, PageNovelite, PageHits } from "../pages"
+import {BrowserRouter, Router, Route, Outlet, useLocation} from "react-router-dom";
 
 function Main(){
+
+    const location = useLocation();
+
+    if(location.pathname === "/"){
+        return (
+            <div className="main">
+                <div className="main__cardList">
+                    <PageSweets/>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="main">
-            <div className="main__wrapper-card">
-                <Card/>
-            </div>
-            <div className="main__wrapper-card">
-                <Card/>
-            </div>
-            <div className="main__wrapper-card">
-                <Card/>
-            </div>
-            <div className="main__wrapper-card">
-                <Card/>
-            </div>
-            <div className="main__wrapper-card">
-                <Card/>
+            <div className="main__cardList">
+                <Outlet/>
             </div>
         </div>
     )

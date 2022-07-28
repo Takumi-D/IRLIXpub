@@ -1,15 +1,16 @@
 import React, {Component} from "react";
 import "./navigation-menu.css";
+import {Link} from "react-router-dom";
 
 export default class NavigationMenu extends Component{
     state = {
         itemList: [
-            {keyTab: "Новинки", itemName: "Новинки"},
-            {keyTab: "Сладкое", itemName: "Сладкое"},
-            {keyTab: "Хит", itemName: "Хит"},
-            {keyTab: "Крепкое", itemName: "Крепкое"},
+            {keyTab: "novelties", itemName: "Новинки"},
+            {keyTab: "sweet", itemName: "Сладкое"},
+            {keyTab: "hit", itemName: "Хит"},
+            {keyTab: "strong", itemName: "Крепкое"},
         ],
-        key: "Сладкое"
+        key: "sweet"
     }
 
     settingActiveClass = (item) => {
@@ -22,7 +23,7 @@ export default class NavigationMenu extends Component{
         return arrItem.map((item) => {
             const activeClass = item.keyTab === this.state.key ? "navigation-menu_selected" : "";
             return (
-                <li onClick={() => this.settingActiveClass(item)} className={`navigation-menu__item ${activeClass}`} key={item.itemName}>{item.itemName}</li>
+                <Link onClick={() => this.settingActiveClass(item)} className={`navigation-menu__item ${activeClass}`} key={item.itemName} to={`${item.keyTab}`}>{item.itemName}</Link>
             )
         })
     }
