@@ -4,7 +4,7 @@ import Card from "../card/card";
 const RenderCart = ({arrayCarts}) => {
     return arrayCarts.map((dataCart) => {
         return (
-            <React.Fragment key={dataCart.id}>
+            <React.Fragment key={dataCart.idDrink}>
                 <Card data={dataCart}/>
             </React.Fragment>
         )

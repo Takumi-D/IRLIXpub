@@ -82,6 +82,17 @@
     color: var(--light-gray-color);
 }
 
+.main-descriptions__ingredients{
+    font-family: 'Roboto', 'sans-serif';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    color: var(--light-gray-color);
+    width: 100%;
+    max-width: max-content;
+}
+
 .main-descriptions__points{
     border-bottom: dashed 1px var(--light-gray-color);
     width: 100%;

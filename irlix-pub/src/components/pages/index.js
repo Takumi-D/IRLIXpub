@@ -1,11 +1,7 @@
-import PageHits from "./page-hit";
-import PageNovelite from "./page-novelite";
-import PageStrong from "./page-strong";
-import PageSweets from "./page-sweets"
+import All from "./page-all";
+import RenderList from "./page-render-list";
 
 export {
-    PageHits,
-    PageNovelite,
-    PageStrong,
-    PageSweets
+    All,
+    RenderList,
 }

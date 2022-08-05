@@ -1,41 +1,56 @@
-import React, {Component} from "react";
+import React, {useMemo, useState} from "react";
 import "./navigation-menu.css";
-import {Link} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-export default class NavigationMenu extends Component{
-    state = {
-        itemList: [
-            {keyTab: "novelties", itemName: "Новинки"},
-            {keyTab: "sweet", itemName: "Сладкое"},
-            {keyTab: "hit", itemName: "Хит"},
-            {keyTab: "strong", itemName: "Крепкое"},
-        ],
-        key: "sweet"
-    }
+function NavigationMenu() {
 
-    settingActiveClass = (item) => {
-        this.setState({
-            key: item.keyTab
+    const location = useLocation();
+
+    const initialState = useMemo(() => ([
+        {keyTab: "all", itemName: "Все"},
+        {keyTab: "alcoholic", itemName: "Алкогольные"},
+        {keyTab: "NonAlcoholic", itemName: "Безалкогольные"},
+        {keyTab: "OrdinaryDrink", itemName: "Обычно берут"},
+        {keyTab: "Cocktail", itemName: "Коктейли"},
+        {keyTab: "Shot", itemName: "Шоты"},
+        {keyTab: "Punch/PartyDrink", itemName: "Пунш/напиток для вечеринки"},
+        {keyTab: "HomemadeLiqueur", itemName: "Домашний ликёр"},
+        {keyTab: "Cocoa", itemName: "Какао"},
+        {keyTab: "Shake", itemName: "Шейкеры"},
+        {keyTab: "Unknown", itemName: "Другое"},
+    ]), [])
+
+    const [itemList, setItemList] = useState({
+        itemList: initialState,
+        key: location.pathname === "/" ? "all" : location.pathname.split("/")[1]
+    })
+
+
+    const settingActiveClass = (item) => {
+        setItemList({
+            itemList: initialState,
+            key: item
         })
     }
 
-    renderItemList = (arrItem) => {
+    const renderItemList = (arrItem) => {
         return arrItem.map((item) => {
-            const activeClass = item.keyTab === this.state.key ? "navigation-menu_selected" : "";
+            const activeClass = item.keyTab === itemList.key ? "navigation-menu_selected" : "";
             return (
-                <Link onClick={() => this.settingActiveClass(item)} className={`navigation-menu__item ${activeClass}`} key={item.itemName} to={`${item.keyTab}`}>{item.itemName}</Link>
+                <Link onClick={() => settingActiveClass(item.keyTab)} className={`navigation-menu__item ${activeClass}`}
+                      key={item.itemName} to={`${item.keyTab}`}>{item.itemName}</Link>
             )
         })
     }
 
-    render(){
+    const itemListf = renderItemList(itemList.itemList);
 
-        const itemList = this.renderItemList(this.state.itemList);
+    return (
+        <ul className="navigation-menu">
+            {itemListf}
+        </ul>
+    )
 
-        return (
-            <ul className="navigation-menu">
-                {itemList}
-            </ul>
-        )
-    }
 }
+
+export default NavigationMenu;

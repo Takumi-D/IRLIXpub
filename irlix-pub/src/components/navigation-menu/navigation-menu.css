@@ -1,7 +1,11 @@
 .navigation-menu{
     display: flex;
     align-items: center;
+    margin: 0 29px 0 49px;
+    overflow-x: auto;
 }
+
+
 
 .navigation-menu__item{
     margin: 0 26px 0 26px;
@@ -12,15 +16,9 @@
     line-height: 21px;
     color: var(--light-gray-color);
     cursor: pointer;
+    flex-shrink: 0;
 }
 
-.navigation-menu__item:first-child{
-    margin-left: 49px;
-}
-
-.navigation-menu__item:last-child{
-    margin-right: 0px;
-}
 
 .navigation-menu_selected{
     border-radius: 32px;
