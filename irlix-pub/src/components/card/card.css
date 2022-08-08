@@ -46,6 +46,12 @@
 @media (min-width: 320px) and (max-width: 767.98px){
     .card{
         max-width: 320px;
+        margin-bottom: 32px;
+    }
+
+    .main__cardList{
+        gap: 0;
+        column-gap: 23px;
     }
 }
 

@@ -19,6 +19,7 @@
 .wrapper-search{
     position: relative;
     margin-right: 34px;
+    height: max-content;
 }
 
 .btn{
@@ -54,7 +55,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    height: -webkit-fill-available;
+    height: 100%;
     background: var(--light-gray);
     color: var(--light-gray-color);
 }
