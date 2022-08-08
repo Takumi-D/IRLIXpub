@@ -5,8 +5,6 @@
     overflow-x: auto;
 }
 
-
-
 .navigation-menu__item{
     margin: 0 26px 0 26px;
     font-family: 'Roboto', 'sans-serif';
@@ -17,6 +15,8 @@
     color: var(--light-gray-color);
     cursor: pointer;
     flex-shrink: 0;
+    background-color: var(--black-lilac-color);
+    border: none;
 }
 
 

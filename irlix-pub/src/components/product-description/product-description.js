@@ -3,9 +3,10 @@ import "./product-description.css";
 import Vector from "../../images/product-description/Vector.svg";
 import { mockContext } from "../context";
 import { useParams, useNavigate } from "react-router-dom";
+import filterIngredients from "../helpers/filterIngredients"
 
 function ProductDescription() {
-    const {request: data} = useContext(mockContext);
+    const { data, setSearchOptions } = useContext(mockContext);
     const params = useParams();
     const navigate = useNavigate();
 
@@ -15,29 +16,7 @@ function ProductDescription() {
         })
     }
 
-    const filterIngredients = (data) => {
-        let obj = {};
-        let arr = []
-        for(let i in data){
-            if((i.indexOf("strIngredient") >= 0 && data[i] !== null) || (i.indexOf("strMeasure") >= 0 && data[i] !== null)){
-                if(i.indexOf("strIngredient") >= 0){
-                    obj[i] = data[i]
-                }
-                if(i.indexOf("strMeasure") >= 0){
-                    obj[i] = data[i]
-                }
-            }
-        }
-
-       for(let i = 0; i < Object.keys(obj).length; i++){
-           if(obj["strIngredient" + [i + 1]] !== undefined){
-               arr.push({strIngredient: obj["strIngredient" + [i + 1]], strMeasure: obj["strMeasure" + [i + 1]], id: i})
-           }
-       }
-        return arr
-    }
-
-    const daraCard = data !== undefined ? filterCard(data) : null;
+    const daraCard = data !== undefined ? filterCard(data.data) : null;
     const finalObject = daraCard[0];
     const filnalFilter = finalObject !== null ? filterIngredients(finalObject) : null;
 
@@ -59,14 +38,17 @@ function ProductDescription() {
         )
     }
 
-
+    const clearSearchAndGoBackToList = () => {
+        setSearchOptions("")
+        navigate(-1)
+    }
 
 
     return (
         <React.Fragment>
             <header className="header-descriptions">
                 <img src={finalObject.strDrinkThumb} alt="Картинка продукта" className="header-descriptions__image"/>
-                <div className="exit-from-description" onClick={() => navigate(-1)}>
+                <div className="exit-from-description" onClick={() => clearSearchAndGoBackToList()}>
                     <img src={Vector} alt="Стрелка назад" className="exit-from-description__image"/>
                 </div>
             </header>

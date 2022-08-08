@@ -1,5 +1,3 @@
-import React from "react";
-
 function InstallationDataList(sortingBy, category, data, text) {
     const searchFilter = (data) => {
         return data.filter((el) => {
@@ -8,6 +6,10 @@ function InstallationDataList(sortingBy, category, data, text) {
     }
 
     const filterByCategory = (data) => {
+        if(sortingBy === "All"){
+            return data
+        }
+
         return data.filter((el) => {
             return el[sortingBy] === category
         })

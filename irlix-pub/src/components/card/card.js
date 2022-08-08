@@ -1,10 +1,9 @@
 import React from "react";
 import "./card.css";
 import Discount from "../discount";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Card({ data }) {
-
     const navigate = useNavigate();
 
     return (

@@ -1,49 +1,40 @@
-import React, {useMemo, useState} from "react";
+import React, { useContext } from "react";
 import "./navigation-menu.css";
-import { Link, useLocation } from "react-router-dom";
+import { mockContext } from "../context";
 
 function NavigationMenu() {
+    const context = useContext(mockContext);
 
-    const location = useLocation();
-
-    const initialState = useMemo(() => ([
-        {keyTab: "all", itemName: "Все"},
-        {keyTab: "alcoholic", itemName: "Алкогольные"},
-        {keyTab: "NonAlcoholic", itemName: "Безалкогольные"},
-        {keyTab: "OrdinaryDrink", itemName: "Обычно берут"},
+    const initialState = [
+        {keyTab: "All", itemName: "Все"},
+        {keyTab: "Alcoholic", itemName: "Алкогольные"},
+        {keyTab: "Non alcoholic", itemName: "Безалкогольные"},
+        {keyTab: "Ordinary Drink", itemName: "Обычно берут"},
         {keyTab: "Cocktail", itemName: "Коктейли"},
         {keyTab: "Shot", itemName: "Шоты"},
-        {keyTab: "Punch/PartyDrink", itemName: "Пунш/напиток для вечеринки"},
-        {keyTab: "HomemadeLiqueur", itemName: "Домашний ликёр"},
+        {keyTab: "Punch / Party Drink", itemName: "Пунш/напиток для вечеринки"},
+        {keyTab: "Homemade Liqueur", itemName: "Домашний ликёр"},
         {keyTab: "Cocoa", itemName: "Какао"},
         {keyTab: "Shake", itemName: "Шейкеры"},
-        {keyTab: "Unknown", itemName: "Другое"},
-    ]), [])
-
-    const [itemList, setItemList] = useState({
-        itemList: initialState,
-        key: location.pathname === "/" ? "all" : location.pathname.split("/")[1]
-    })
+        {keyTab: "Other/Unknown", itemName: "Другое"},
+    ];
 
 
     const settingActiveClass = (item) => {
-        setItemList({
-            itemList: initialState,
-            key: item
-        })
+        context.setCategory(item)
     }
 
     const renderItemList = (arrItem) => {
         return arrItem.map((item) => {
-            const activeClass = item.keyTab === itemList.key ? "navigation-menu_selected" : "";
+            const activeClass = item.keyTab === context.category ? "navigation-menu_selected" : "";
             return (
-                <Link onClick={() => settingActiveClass(item.keyTab)} className={`navigation-menu__item ${activeClass}`}
-                      key={item.itemName} to={`${item.keyTab}`}>{item.itemName}</Link>
+                <button onClick={() => settingActiveClass(item.keyTab)} className={`navigation-menu__item ${activeClass}`}
+                      key={item.itemName} to={`${item.keyTab}`}>{item.itemName}</button>
             )
         })
     }
 
-    const itemListf = renderItemList(itemList.itemList);
+    const itemListf = renderItemList(initialState);
 
     return (
         <ul className="navigation-menu">
