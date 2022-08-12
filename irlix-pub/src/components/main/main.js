@@ -5,7 +5,7 @@ import Header from "../header";
 import NavigationMenu from "../navigation-menu";
 import Footer from "../footer";
 
-function Main( {textSearch }){
+function Main(){
     const params = useParams();
 
     if(params.hasOwnProperty("id")){
@@ -29,7 +29,7 @@ function Main( {textSearch }){
                 </div>
             </div>
 
-            <Footer textSearch={textSearch}/>
+            <Footer/>
         </React.Fragment>
     )
 }

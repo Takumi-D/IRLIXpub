@@ -1,5 +1,8 @@
-import { mockContext } from "./services-context";
+import { MockContext } from "./services-context";
+import { MockContextProvider, MockContextConsumer } from "./servises-context-redux"
 
 export {
-    mockContext
+    MockContext,
+    MockContextProvider,
+    MockContextConsumer
 }

@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./navigation-menu.css";
-import { mockContext } from "../context";
+import { connect } from "react-redux";
 
-function NavigationMenu() {
-    const context = useContext(mockContext);
+function NavigationMenu({ category, categorySetting }) {
 
     const initialState = [
         {keyTab: "All", itemName: "Все"},
@@ -21,12 +20,12 @@ function NavigationMenu() {
 
 
     const settingActiveClass = (item) => {
-        context.setCategory(item)
+        categorySetting(item)
     }
 
     const renderItemList = (arrItem) => {
         return arrItem.map((item) => {
-            const activeClass = item.keyTab === context.category ? "navigation-menu_selected" : "";
+            const activeClass = item.keyTab === category ? "navigation-menu_selected" : "";
             return (
                 <button onClick={() => settingActiveClass(item.keyTab)} className={`navigation-menu__item ${activeClass}`}
                       key={item.itemName} to={`${item.keyTab}`}>{item.itemName}</button>
@@ -44,4 +43,21 @@ function NavigationMenu() {
 
 }
 
-export default NavigationMenu;
+const mapStateToProps = ({ category }) => {
+    return {
+        category
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        categorySetting: (category) => {
+            dispatch({
+                type: "SETTING_THE_CATEGORY",
+                category: category
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(NavigationMenu);

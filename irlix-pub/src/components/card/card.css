@@ -50,7 +50,6 @@
     }
 
     .main__cardList{
-        gap: 0;
         column-gap: 23px;
     }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 
-const mockContext = React.createContext()
+const MockContext = React.createContext();
 
 export {
-    mockContext
+    MockContext
 }

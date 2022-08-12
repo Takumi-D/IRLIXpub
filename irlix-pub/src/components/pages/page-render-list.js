@@ -1,25 +1,32 @@
-import React, { useContext } from "react";
-import { mockContext } from "../context";
+import React, {useState} from "react";
+import { connect } from "react-redux";
 import RenderCart from "../render-cart";
 import InstallationDataList from "../helpers/installation-data-list"
 import { Outlet, useParams } from "react-router-dom";
+import withMookService from "../hoc";
 
-function RenderList(){
+function RenderList({ data, loading, error, searchOptions, category, mockServices, loadingСocktails }){
 
-    const context = useContext(mockContext);
-    const { data, searchOptions} = useContext(mockContext);
+    useState(() => {
+        mockServices.getCocktails()
+            .then((data) => {
+                loadingСocktails(data);
+            })
+    }, [])
+
     const params = useParams();
 
-    const sortingBy = context.category === "All" ? "All" :
-        (context.category === "Alcoholic" || context.category === "Non alcoholic" ? "strAlcoholic" : "strCategory");
+    const sortingBy = category === "All" ? "All" :
+        (category === "Alcoholic" || category === "Non alcoholic" ? "strAlcoholic" : "strCategory");
 
-   const finalArray = InstallationDataList(sortingBy, context.category, data.data, searchOptions);
 
-    if(data.loading){
+   const finalArray = InstallationDataList(sortingBy, category, data, searchOptions);
+
+    if(loading){
         return <div>Загрузка...</div>
     }
 
-    if(data.error){
+    if(error){
         return (
             <div>Ошибка</div>
         )
@@ -40,5 +47,27 @@ function RenderList(){
     )
 }
 
-export default RenderList;
+const mapStateToProps = ({ data, loading, error, searchOptions, category }) => {
+    return {
+        data,
+        loading,
+        error,
+        searchOptions,
+        category
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+     return {
+         loadingСocktails: (newCoctails) => {
+             dispatch({
+                 type: "LOADING_COCKTAILS",
+                 payload: newCoctails
+             })
+         }
+     }
+
+}
+
+export default withMookService()(connect(mapStateToProps, mapDispatchToProps)(RenderList));
 

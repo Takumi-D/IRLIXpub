@@ -1,12 +1,12 @@
-import React, {useContext} from "react";
+import React from "react";
 import "./product-description.css";
 import Vector from "../../images/product-description/Vector.svg";
-import { mockContext } from "../context";
+import { connect } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import filterIngredients from "../helpers/filterIngredients"
 
-function ProductDescription() {
-    const { data, setSearchOptions } = useContext(mockContext);
+function ProductDescription({ data, searchOptions }) {
+    debugger
     const params = useParams();
     const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ function ProductDescription() {
         })
     }
 
-    const daraCard = data !== undefined ? filterCard(data.data) : null;
+    const daraCard = data !== undefined ? filterCard(data) : null;
     const finalObject = daraCard[0];
     const filnalFilter = finalObject !== null ? filterIngredients(finalObject) : null;
 
@@ -39,8 +39,8 @@ function ProductDescription() {
     }
 
     const clearSearchAndGoBackToList = () => {
-        setSearchOptions("")
-        navigate(-1)
+        searchOptions("");
+        navigate(-1);
     }
 
 
@@ -79,4 +79,22 @@ function ProductDescription() {
     )
 }
 
-export default ProductDescription;
+const mapStateToProps = ({ data }) => {
+    return {
+        data,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        searchOptions: (textSearch) => {
+            dispatch({
+                type: "SEARCH_OPTIONS",
+                textSearch: textSearch
+            })
+        }
+    }
+
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(ProductDescription);
