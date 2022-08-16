@@ -32,6 +32,14 @@ const reducer = (store = initialStore, actions) => {
                 searchOptions: actions.textSearch,
                 category: store.category
             }
+        case "THROW_ERROR":
+            return {
+                data: store.data,
+                loading: false,
+                error: true,
+                searchOptions: actions.textSearch,
+                category: store.category
+            }
         default:
             return store
     }

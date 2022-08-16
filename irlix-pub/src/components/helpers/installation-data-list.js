@@ -15,8 +15,10 @@ function InstallationDataList(sortingBy, category, data, text) {
         })
     }
 
+
     const categoryArray = data !== undefined ? filterByCategory(data): null
     return text !== "" ? searchFilter(categoryArray) : categoryArray;
+
 }
 
 export default InstallationDataList

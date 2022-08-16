@@ -6,7 +6,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import filterIngredients from "../helpers/filterIngredients"
 
 function ProductDescription({ data, searchOptions }) {
-    debugger
     const params = useParams();
     const navigate = useNavigate();
 
@@ -29,14 +28,6 @@ function ProductDescription({ data, searchOptions }) {
             </div>
         )
     })
-
-    if(daraCard === null){
-        return (
-            <div>
-                <p>Загрузка...</p>
-            </div>
-        )
-    }
 
     const clearSearchAndGoBackToList = () => {
         searchOptions("");

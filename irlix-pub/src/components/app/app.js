@@ -13,7 +13,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={ <Main/>}>
                         <Route index element={ <RenderList/> }/>
-                        <Route path="IRLIXpub/" element={<RenderList/>}>
+                        <Route path="IRLIXpub/" element={ <RenderList/> }>
                             <Route path=":id" element={ <ProductDescription/> }/>
                         </Route>
                     </Route>

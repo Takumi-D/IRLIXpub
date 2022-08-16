@@ -4,6 +4,7 @@
     min-width: 200px;
     height: 420px;
     margin: 0;
+    cursor: pointer;
 }
 
 .card__wrapper-discount{
@@ -24,6 +25,13 @@
     left: 32px;
 }
 
+.card__wrapper-title{
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
 .card__title{
     font-family: 'Roboto', 'sans-serif';
     font-style: normal;
@@ -32,6 +40,7 @@
     line-height: 28px;
     letter-spacing: 0.07em;
     color: var(  --white-color);
+    width: max-content;
 }
 
 .card__paragraph{
