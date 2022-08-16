@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/IRLIXpub/static/css/main.00f2432a.css",
-    "main.js": "/IRLIXpub/static/js/main.c3781d0f.js",
+    "main.css": "/IRLIXpub/static/css/main.72835ae6.css",
+    "main.js": "/IRLIXpub/static/js/main.989106b6.js",
+    "static/media/пустой стакан.png": "/IRLIXpub/static/media/пустой стакан.151beb965fb1ca2c21c3.png",
     "static/media/logo.svg": "/IRLIXpub/static/media/logo.4f91fae0374522eea489b4c419da3cf1.svg",
     "index.html": "/IRLIXpub/index.html",
     "static/media/Vector.svg": "/IRLIXpub/static/media/Vector.1b4561562f144df41ed42cfa2ac155aa.svg",
-    "main.00f2432a.css.map": "/IRLIXpub/static/css/main.00f2432a.css.map",
-    "main.c3781d0f.js.map": "/IRLIXpub/static/js/main.c3781d0f.js.map"
+    "main.72835ae6.css.map": "/IRLIXpub/static/css/main.72835ae6.css.map",
+    "main.989106b6.js.map": "/IRLIXpub/static/js/main.989106b6.js.map"
   },
   "entrypoints": [
-    "static/css/main.00f2432a.css",
-    "static/js/main.c3781d0f.js"
+    "static/css/main.72835ae6.css",
+    "static/js/main.989106b6.js"
   ]
 }
