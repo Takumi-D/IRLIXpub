@@ -2,21 +2,26 @@ import React, {useState} from "react";
 import "./footer.css";
 import { connect } from "react-redux";
 
-function Footer({ searchOptions }) {
+function Footer({ searchOptions, searchValue }) {
     const [show, setShow] = useState("none");
-    const textInput = React.createRef();
 
     return (
         <footer className="footer">
              <div className="footer__wrapper-btn">
                  <div className="wrapper-search">
-                     <input ref={textInput} onChange={(el) => searchOptions(el.target.value)} className={`input ${show}`} type="text"/>
-                     <button onClick={() => {setShow("none"); searchOptions(""); textInput.current.value = ""}} className={`btn btn-search ${show}`}>X</button>
+                     <input onChange={(el) => searchOptions(el.target.value)} value={searchValue} className={`input ${show}`} type="text"/>
+                     <button onClick={() => {setShow("none"); searchOptions("")}} className={`btn btn-search ${show}`}>X</button>
                  </div>
                  <button onClick={() => setShow("")} className={`btn ${show === "" ? "none": ""}`}>Поиск</button>
              </div>
         </footer>
     )
+}
+
+const mapStateToProps = (state) => {
+    return {
+        searchValue: state.searchOptions
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -30,4 +35,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Footer);
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

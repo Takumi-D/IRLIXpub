@@ -1,15 +1,13 @@
-import React, { useState} from "react";
+import React, {useEffect} from "react";
 import { connect } from "react-redux";
 import RenderCart from "../render-cart";
 import InstallationDataList from "../helpers/installation-data-list"
-import { Outlet, useParams } from "react-router-dom";
 import withMookService from "../hoc";
 import Spinner from "../spinner";
 
 
 function RenderList({ data, loading, error, searchOptions, category, mockServices, loadingCocktails, throwError }){
-
-    useState(() => {
+    useEffect(() => {
         if(data === null){
             mockServices.getCocktails()
                 .then((data) => {
@@ -19,11 +17,19 @@ function RenderList({ data, loading, error, searchOptions, category, mockService
                     throwError()
                 })
         }
-    }, [])
+    }, [ data, loadingCocktails, throwError, mockServices ]);
 
-    const params = useParams();
-    const sortingBy = category === "All" ? "All" :
-        (category === "Alcoholic" || category === "Non alcoholic" ? "strAlcoholic" : "strCategory");
+    let SortingBy = "";
+
+    if(category === "All"){
+        SortingBy = "All";
+    } else if(category === "Alcoholic" || category === "Non alcoholic"){
+        SortingBy = "strAlcoholic";
+    }
+    else {
+        SortingBy = "strCategory";
+    }
+
 
     if(loading){
         return (
@@ -45,16 +51,8 @@ function RenderList({ data, loading, error, searchOptions, category, mockService
         )
     }
 
-    if(params.id !== undefined){
-        return (
-            <Outlet/>
-        )
-    }
-
     return(
-        <React.Fragment>
-            <RenderCart arrayCarts={InstallationDataList(sortingBy, category, data, searchOptions)}/>
-        </React.Fragment>
+        <RenderCart arrayCarts={InstallationDataList(SortingBy, category, data, searchOptions)}/>
     )
 }
 

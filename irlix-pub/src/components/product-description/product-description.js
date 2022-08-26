@@ -36,7 +36,7 @@ function ProductDescription({ data, searchOptions }) {
 
 
     return (
-        <React.Fragment>
+        <div className="main__card">
             <header className="header-descriptions">
                 <img src={finalObject.strDrinkThumb} alt="Картинка продукта" className="header-descriptions__image"/>
                 <div className="exit-from-description" onClick={() => clearSearchAndGoBackToList()}>
@@ -66,7 +66,7 @@ function ProductDescription({ data, searchOptions }) {
                 </div>
             </main>
 
-        </React.Fragment>
+        </div>
     )
 }
 
