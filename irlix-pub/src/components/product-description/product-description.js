@@ -1,18 +1,53 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./product-description.css";
 import Vector from "../../images/product-description/Vector.svg";
 import { connect } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import filterIngredients from "../helpers/filterIngredients"
+import withMookService from "../hoc";
+import Spinner from "../spinner";
 
-function ProductDescription({ data, searchOptions }) {
+function ProductDescription({ data, loading, error, searchOptions, mockServices, loadingCocktails, throwError }) {
     const params = useParams();
     const navigate = useNavigate();
+
+
+    useEffect(() => {
+        if(data === null){
+            mockServices.getCocktails()
+                .then((data) => {
+                    loadingCocktails(data);
+                })
+                .catch(() => {
+                    throwError()
+                })
+        }
+    }, [ data, loadingCocktails, throwError, mockServices ]);
 
     const filterCard = (data) => {
         return data.filter((el) => {
             return el.idDrink === params.id;
         })
+    }
+
+    if(loading){
+        return (
+            <div className="main">
+                <div className="main__cardList">
+                    <Spinner/>
+                </div>
+            </div>
+        )
+    }
+
+    if(error){
+        return (
+            <div className="main">
+                <div className="main__cardList">
+                    <h1>Ошибка</h1>
+                </div>
+            </div>
+        )
     }
 
     const daraCard = data !== undefined ? filterCard(data) : null;
@@ -33,6 +68,7 @@ function ProductDescription({ data, searchOptions }) {
         searchOptions("");
         navigate(-1);
     }
+
 
 
     return (
@@ -70,9 +106,11 @@ function ProductDescription({ data, searchOptions }) {
     )
 }
 
-const mapStateToProps = ({ data }) => {
+const mapStateToProps = ({ data, loading, error}) => {
     return {
         data,
+        loading,
+        error,
     }
 }
 
@@ -83,9 +121,20 @@ const mapDispatchToProps = (dispatch) => {
                 type: "SEARCH_OPTIONS",
                 textSearch: textSearch
             })
+        },
+        loadingCocktails: (newCoctails) => {
+            dispatch({
+                type: "LOADING_COCKTAILS",
+                payload: newCoctails
+            })
+        },
+        throwError: () => {
+            dispatch({
+                type: "THROW_ERROR"
+            })
         }
     }
 
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(ProductDescription);
+export default withMookService()(connect(mapStateToProps,mapDispatchToProps)(ProductDescription));
