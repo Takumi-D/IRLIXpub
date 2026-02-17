@@ -24,10 +24,55 @@ function ProductDescription({ data, loading, error, searchOptions, mockServices,
         }
     }, [ data, loadingCocktails, throwError, mockServices ]);
 
-    const filterCard = (data) => {
+    useEffect(() => {
+        if(data !== null){
+            onYaPayLoad()
+        }
+    })
+
+    function onYaPayLoad() {
+        const YaPay = window.YaPay;
+
+        const paymentData = {
+            env: window.YaPay.PaymentEnv.Sandbox,
+            version: 4,
+            currencyCode: window.YaPay.CurrencyCode.Rub,
+            merchantId: "c3190625-2691-4108-a6da-c2d565172846",
+            totalAmount: "15980.00",
+            availablePaymentMethods: ["CARD", "SPLIT"],
+        };
+
+        async function onPayButtonClick() {
+            return "https://sandbox.pay.ya.ru/l/uuxlYW";
+        }
+
+        function onFormOpenError(reason) {
+            console.error(`Payment error — ${reason}`);
+        }
+
+        YaPay.createSession(paymentData, {
+            onPayButtonClick: onPayButtonClick,
+            onFormOpenError: onFormOpenError,
+        })
+            .then(function (paymentSession) {
+                paymentSession.mountButton(document.querySelector('#button_container'), {
+                    type: YaPay.ButtonType.Pay,
+                    theme: YaPay.ButtonTheme.Black,
+                    width: YaPay.ButtonWidth.Auto,
+                });
+            })
+            .catch(function (err) {
+            });
+    }
+
+    function filterCard(data){
         return data.filter((el) => {
             return el.idDrink === params.id;
         })
+    }
+
+    function constructorObject(data){
+        return data !== undefined ? filterCard(data)[0] : null;
     }
 
     if(loading){
@@ -50,8 +95,7 @@ function ProductDescription({ data, loading, error, searchOptions, mockServices,
         )
     }
 
-    const daraCard = data !== undefined ? filterCard(data) : null;
-    const finalObject = daraCard[0];
+    const finalObject = constructorObject(data);
     const filnalFilter = finalObject !== null ? filterIngredients(finalObject) : null;
 
     const finalArrayIngredients = filnalFilter.map((el) => {
@@ -68,7 +112,6 @@ function ProductDescription({ data, loading, error, searchOptions, mockServices,
         searchOptions("");
         navigate(-1);
     }
-
 
 
     return (
@@ -98,15 +141,14 @@ function ProductDescription({ data, loading, error, searchOptions, mockServices,
                             {finalObject.strInstructions}
                         </p>
                     </div>
-
+                    <button id="button_container"></button>
                 </div>
             </main>
-
         </div>
     )
 }
 
-const mapStateToProps = ({ data, loading, error}) => {
+const mapStateToProps = ({data, loading, error}) => {
     return {
         data,
         loading,

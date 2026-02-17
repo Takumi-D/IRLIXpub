@@ -1,6 +1,5 @@
 import React from "react";
 import "./header.css";
-import logo from "../../images/header/logo.svg";
 
 function Header() {
     const date = new Date();
@@ -17,7 +16,6 @@ function Header() {
                 <h4 className="header__title">Главная</h4>
                 <p className="header__date">{date.toLocaleString("ru", options)}</p>
             </div>
-            <img src={logo} alt="логотип" className="header__img"/>
         </header>
     )
 }
